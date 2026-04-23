@@ -307,6 +307,7 @@ const path = require('path');
 app.use(express.static(path.join(__dirname, '../dist')));
 
 // 모든 라우트를 React로
-app.get('*', (req, res) => {
+// ✅ 수정 - Express 5.x 호환
+app.get('/{*splat}', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
