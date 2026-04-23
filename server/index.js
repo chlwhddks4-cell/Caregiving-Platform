@@ -299,17 +299,10 @@ app.post("/login", async (req, res) => {
 
 
 const path = require('path');
+const distPath = path.join(__dirname, '../dist');
+console.log('dist path:', distPath);  // 👈 추가
 
-// React 빌드 파일 서빙
-app.use(express.static(path.join(__dirname, '../dist')));
-
-// 모든 라우트를 React로
-// ✅ 수정 - Express 5.x 호환
+app.use(express.static(distPath));
 app.get('/{*splat}', (req, res) => {
-  res.sendFile(path.join(__dirname, '../dist/index.html'));
-});
-
-
-app.listen(PORT, () => {
-  console.log(`server running on http://localhost:${PORT}`);
+  res.sendFile(path.join(distPath, 'index.html'));
 });
