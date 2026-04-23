@@ -2,7 +2,7 @@
 const express = require("express");
 const cors = require("cors");
 const db = require("./db");
-
+const path = require('path');
 const app = express();
 
 app.use(cors());
@@ -17,16 +17,21 @@ const PORT = 4000;
 // index.js 맨 위에 추가
 const bcrypt = require('bcrypt');
 
+// ✅ React 서빙 코드만 남기기
+const distPath = path.join(__dirname, '../dist');
+app.use(express.static(distPath));
+app.get('/{*splat}', (req, res) => {
+  res.sendFile(path.join(distPath, 'index.html'));
+});
 
-
-// 테스트 API
-app.get("/", (req, res) => {
+// // 테스트 API
+// app.get("/", (req, res) => {
 
   
-  res.send("서버 정상 zz작동 🚀");
+//   res.send("서버 정상 zz작동 🚀");
 
 
-});
+// });
 
 // 게시판 API
 /////////////////////////////////////
@@ -307,3 +312,5 @@ app.post("/login", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`서버가 포트 ${PORT}에서 실행 중입니다.`);
 });
+
+
