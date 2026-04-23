@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* index.css */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+
+.ag-center-header .ag-header-cell-label {
+  justify-content: center;
+}
+
+.ag-left-padding .ag-header-cell-label {
+  justify-content: flex-start;
+  padding-left: 10px;
+}
+
+
+
+.ag-theme-alpine .ag-root-wrapper {
+  border: none;
+}
+
+.ag-theme-alpine .ag-cell,
+.ag-theme-alpine .ag-header-cell {
+  border-right: none !important;
+}
+
+.ag-theme-alpine .ag-row {
+  border-bottom: 1px solid #ccdfeb; /* 가로선만 유지 */
+}

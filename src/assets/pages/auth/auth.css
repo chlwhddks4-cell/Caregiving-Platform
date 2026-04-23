@@ -1,0 +1,588 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --primary: #2D6A4F;
+    --primary-light: #40916C;
+    --primary-dark: #1B4332;
+    --accent: #74C69D;
+    --bg: #F8FAF9;
+    --white: #FFFFFF;
+    --gray-100: #F1F5F2;
+    --gray-200: #E2EAE5;
+    --gray-400: #9DB5A5;
+    --gray-600: #5C7A67;
+    --gray-800: #2D3F35;
+    --error: #E63946;
+    --shadow: 0 4px 24px rgba(45,106,79,0.10);
+    --shadow-lg: 0 8px 40px rgba(45,106,79,0.15);
+  }
+
+  .auth-wrap {
+    min-height: 100vh;
+    background: var(--bg);
+    display: flex;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  /* 왼쪽 패널 */
+  .auth-left {
+    width: 420px;
+    min-height: 100vh;
+    background: linear-gradient(160deg, var(--primary-dark) 0%, var(--primary) 60%, var(--primary-light) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 50px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .auth-left::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    background: rgba(116,198,157,0.15);
+    border-radius: 50%;
+  }
+  .auth-left::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -60px;
+    width: 250px; height: 250px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 60px;
+    position: relative; z-index: 1;
+  }
+
+  .brand-icon {
+    width: 44px; height: 44px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+
+  .brand-name {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    font-size: 22px;
+    letter-spacing: -0.5px;
+  }
+
+  .left-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    position: relative; z-index: 1;
+  }
+
+  .left-desc {
+    font-size: 15px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.8;
+    margin-bottom: 50px;
+    position: relative; z-index: 1;
+  }
+
+  .left-features {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative; z-index: 1;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255,255,255,0.9);
+    font-size: 14px;
+  }
+
+  .feature-dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* 오른쪽 폼 영역 */
+  .auth-right {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 70px 20px 40px;
+    overflow-y: auto;
+  }
+
+  .auth-card {
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .tab-group {
+    display: flex;
+    background: var(--gray-100);
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 32px;
+  }
+
+  .tab-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-600);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  .tab-btn.active {
+    background: white;
+    color: var(--primary);
+    box-shadow: var(--shadow);
+    font-weight: 700;
+  }
+
+  .form-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+
+  .form-subtitle {
+    font-size: 14px;
+    color: var(--gray-400);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  /* 역할 선택 */
+  .role-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .role-card {
+    border: 2px solid var(--gray-200);
+    border-radius: 14px;
+    padding: 18px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    background: white;
+  }
+
+  .role-card:hover {
+    border-color: var(--accent);
+    background: #F0FAF5;
+  }
+
+  .role-card.selected {
+    border-color: var(--primary);
+    background: #EBF5EF;
+  }
+
+  .role-emoji {
+    font-size: 28px;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .role-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gray-800);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .role-desc {
+    font-size: 12px;
+    color: var(--gray-400);
+  }
+
+  /* 폼 필드 */
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .field-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .field-required {
+    color: var(--error);
+    margin-left: 3px;
+  }
+
+  .input-wrap {
+    position: relative;
+  }
+
+  .input-icon {
+    position: absolute;
+    left: 14px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+  }
+
+  .field-input {
+    width: 100%;
+    padding: 13px 14px 13px 42px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 10px;
+    font-size: 14px;
+    color: var(--gray-800);
+    background: white;
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: all 0.2s;
+    outline: none;
+  }
+
+  .field-input-email {
+    width: 100%;
+    padding: 13px 14px 13px 10px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 10px;
+    font-size: 14px;
+    color: var(--gray-800);
+    background: white;
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: all 0.2s;
+    outline: none;
+  }
+
+  .field-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(45,106,79,0.1);
+  }
+
+  .field-input-email:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(45,106,79,0.1);
+  }
+
+  .field-input.error {
+    border-color: var(--error);
+  }
+
+  .field-input::placeholder {
+    color: var(--gray-400);
+  }
+
+  /* 휴대폰 인증 */
+  .phone-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  .phone-row .field-input {
+    flex: 1;
+  }
+
+  /* 아이디 중복 체크 */
+  .id-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  .id-row .field-input {
+    flex: 1;
+  }
+
+  .verify-btn {
+    padding: 13px 16px;
+    background: #35b669;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: all 0.2s;
+  }
+
+  .verify-btn:hover {
+    background: #7cb995;
+    border-color: var(--primary);
+    color:black;
+  }
+
+  .verify-btn.sent {
+    color: var(--gray-400);
+    cursor: default;
+  }
+
+  .verify-btn.available {
+    background: var(--primary);
+    color: white;
+    cursor: default;
+  }
+
+  .verify-btn.unavailable {
+    background: var(--error);
+    color: white;
+    cursor: default;
+  }
+
+  .verify-code-wrap {
+    margin-top: 8px;
+  }
+
+  .verify-hint {
+    font-size: 12px;
+    color: var(--primary);
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* 신원조회 섹션 */
+  .identity-section {
+    background: #FFF8E7;
+    border: 1.5px solid #F4C948;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 24px;
+  }
+
+  .identity-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #8A6500;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .identity-desc {
+    font-size: 12px;
+    color: #A07800;
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+
+  .identity-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+  }
+
+  .identity-check input[type="checkbox"] {
+    width: 16px; height: 16px;
+    accent-color: var(--primary);
+    margin-top: 2px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .identity-check-label {
+    font-size: 13px;
+    color: var(--gray-800);
+    line-height: 1.5;
+  }
+
+  /* 약관 */
+  .terms-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+    padding: 16px;
+    background: var(--gray-100);
+    border-radius: 12px;
+  }
+
+  .terms-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--gray-800);
+  }
+
+  .terms-item input[type="checkbox"] {
+    width: 16px; height: 16px;
+    accent-color: var(--primary);
+    cursor: pointer;
+  }
+
+  .terms-link {
+    color: var(--primary);
+    text-decoration: underline;
+    margin-left: auto;
+    font-size: 12px;
+  }
+
+  /* 버튼 */
+  .submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+
+  .submit-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+
+  .submit-btn:disabled {
+    background: var(--gray-200);
+    color: var(--gray-400);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* 구분선 */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0;
+    color: var(--gray-400);
+    font-size: 13px;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gray-200);
+  }
+
+  /* 소셜 로그인 */
+  .social-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .social-btn {
+    flex: 1;
+    padding: 12px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 10px;
+    background: white;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-800);
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .social-btn:hover {
+    background: var(--gray-100);
+  }
+
+  .switch-text {
+    text-align: center;
+    font-size: 14px;
+    color: var(--gray-400);
+    margin-top: 24px;
+  }
+
+  .switch-link {
+    color: var(--primary);
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .error-msg {
+    font-size: 12px;
+    color: var(--error);
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .success-banner {
+    background: #EBF5EF;
+    border: 1.5px solid var(--accent);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .auth-left { display: none; }
+    .auth-right { padding: 24px 16px; }
+  }
+
+  .email-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+   justify-content: flex-start; /* 👈 추가 */
+}
+
+/* select 스타일 기존 input이랑 맞추기 */
+.field-input select {
+  appearance: none;
+}
