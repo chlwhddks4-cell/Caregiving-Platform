@@ -17,9 +17,24 @@ const PORT = 4000;
 // index.js 맨 위에 추가
 const bcrypt = require('bcrypt');
 
+process.on('uncaughtException', (err) => {
+  console.error('🔥 uncaughtException:', err.message);
+  console.error(err.stack);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('🔥 unhandledRejection:', reason);
+});
+
 // 테스트 API
 app.get("/", (req, res) => {
-  res.send("서버 정상 작동 🚀");
+
+  
+  res.send("서버 정상 zz작동 🚀");
+
+  db.query('SELECT 1')
+  .then(() => console.log('✅ DB 연결 성공!'))
+  .catch((err) => console.error('❌ DB 연결 실패:', err.message));
 });
 
 // 게시판 API
