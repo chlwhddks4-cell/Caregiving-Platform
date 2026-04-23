@@ -17,14 +17,7 @@ const PORT = 4000;
 // index.js 맨 위에 추가
 const bcrypt = require('bcrypt');
 
-process.on('uncaughtException', (err) => {
-  console.error('🔥 uncaughtException:', err.message);
-  console.error(err.stack);
-});
 
-process.on('unhandledRejection', (reason, promise) => {
-  console.error('🔥 unhandledRejection:', reason);
-});
 
 // 테스트 API
 app.get("/", (req, res) => {
@@ -32,9 +25,7 @@ app.get("/", (req, res) => {
   
   res.send("서버 정상 zz작동 🚀");
 
-  db.query('SELECT 1')
-  .then(() => console.log('✅ DB 연결 성공!'))
-  .catch((err) => console.error('❌ DB 연결 실패:', err.message));
+
 });
 
 // 게시판 API
@@ -313,11 +304,6 @@ app.post("/login", async (req, res) => {
 
 
 
-const path = require('path');
-const distPath = path.join(__dirname, '../dist');
-console.log('dist path:', distPath);  // 👈 추가
-
-app.use(express.static(distPath));
-app.get('/{*splat}', (req, res) => {
-  res.sendFile(path.join(distPath, 'index.html'));
+app.listen(PORT, () => {
+  console.log(`서버가 포트 ${PORT}에서 실행 중입니다.`);
 });
