@@ -299,3 +299,14 @@ app.post("/login", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`server running on http://localhost:${PORT}`);
 });
+
+
+const path = require('path');
+
+// React 빌드 파일 서빙
+app.use(express.static(path.join(__dirname, '../dist')));
+
+// 모든 라우트를 React로
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
