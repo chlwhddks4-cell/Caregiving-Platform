@@ -18,11 +18,11 @@ const PORT = 4000;
 const bcrypt = require('bcrypt');
 
 // ✅ React 서빙 코드만 남기기 배포시는 주석 해제 
-const distPath = path.join(__dirname, '../dist');
-app.use(express.static(distPath));
-app.get('/{*splat}', (req, res) => {
-  res.sendFile(path.join(distPath, 'index.html'));
-});
+// const distPath = path.join(__dirname, '../dist');
+// app.use(express.static(distPath));
+// app.get('/{*splat}', (req, res) => {
+//   res.sendFile(path.join(distPath, 'index.html'));
+// });
 
 // // 테스트 API
 // app.get("/", (req, res) => {
