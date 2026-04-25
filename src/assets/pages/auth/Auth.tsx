@@ -113,7 +113,7 @@ const handleEmailIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!form.id) return alert("아이디를 입력해주세요.");
 
     try {
-      const response = await fetch('http://localhost:4000/check-id', {
+      const response = await fetch('${import.meta.env.VITE_API_URL}/check-id', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -214,7 +214,7 @@ useEffect(() => {
      
     if (mode === "register") {
       try {
-        const response = await fetch('http://localhost:4000/register', {
+        const response = await fetch('${import.meta.env.VITE_API_URL}/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

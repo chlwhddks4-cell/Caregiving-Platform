@@ -92,7 +92,7 @@ const [searchType, setSearchType] = useState("title"); // title | writer
   
     useEffect(() => {
        
-    fetch(`http://13.124.223.105:4000/selectPaging?page=${page}&type=${searchType}&keyword=${keyword}`)  // 🔥 서버 주소
+    fetch(`${import.meta.env.VITE_API_URL}/selectPaging?page=${page}&type=${searchType}&keyword=${keyword}`)  // 🔥 서버 주소
       .then((res) => res.json())
       .then((data) => {
         console.log("데이터:", data);
@@ -104,7 +104,7 @@ const [searchType, setSearchType] = useState("title"); // title | writer
 
   const fetchData = () => {
   
-    fetch(`http://13.124.223.105:4000/selectPaging?page=${page}&type=${searchType}&keyword=${keyword}`)  // 🔥 서버 주소
+    fetch(`${import.meta.env.VITE_API_URL}/selectPaging?page=${page}&type=${searchType}&keyword=${keyword}`)  // 🔥 서버 주소
       .then((res) => res.json())
     .then((data) => {
       setRowData(data.data);

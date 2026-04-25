@@ -26,7 +26,7 @@ export default function WritePage() {
  
 
   try {
-      await fetch("http://localhost:4000/write", {
+      await fetch("${import.meta.env.VITE_API_URL}/write", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

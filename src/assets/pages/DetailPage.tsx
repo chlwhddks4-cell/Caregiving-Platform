@@ -35,7 +35,7 @@ export default function DetailPage() {
 
 
     useEffect(() => {
-    fetch(`http://localhost:4000/detail/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/detail/${id}`)
         .then((res) => res.json())
         .then((res) => {
         // 🔥 여기 핵심
@@ -75,7 +75,7 @@ export default function DetailPage() {
   }
 
   try {
-    const res = await fetch("http://localhost:4000/update", {
+    const res = await fetch("${import.meta.env.VITE_API_URL}/update", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -117,7 +117,7 @@ export default function DetailPage() {
      if (!confirm("삭제 하시겠습니까?")) return;
 
    try {
-      await fetch(`http://localhost:4000/delete`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/delete`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

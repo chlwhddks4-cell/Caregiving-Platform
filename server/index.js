@@ -107,6 +107,7 @@ app.get("/selectPaging", async (req, res) => {
     });
 
   } catch (err) {
+    console.log("에러:", err);
     res.status(500).json({ error: err.message });
   }
 });
