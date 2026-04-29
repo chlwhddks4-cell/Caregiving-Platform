@@ -467,6 +467,8 @@
 
   .btn-danger:hover { background: var(--error); color: white; }
 
+  
+
   @media (max-width: 768px) {
     .mypage-inner { grid-template-columns: 1fr; }
     .sidebar { position: static; }

@@ -61,31 +61,39 @@ const handleEmailIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+        const { name, value } = e.target;
 
-    
+        if (name === 'id') {
+          const filtered = value.replace(/[^a-zA-Z0-9]/g, '');
+          setForm({ ...form, [name]: filtered });
+          setIdChecked(false);
+          setIdAvailable(false);
+          return;
+        }
 
-  if (name === 'id') {
-    // 영문 숫자만 허용, 나머지 입력 차단
-    const filtered = value.replace(/[^a-zA-Z0-9]/g, '');
-    setForm({ ...form, [name]: filtered });
-    return;
-  }
+        if (name === 'phone') {
+          const onlyNum = value.replace(/[^0-9]/g, '');
+          let formatted = onlyNum;
+          if (onlyNum.length <= 3) {
+            formatted = onlyNum;
+          } else if (onlyNum.length <= 7) {
+            formatted = `${onlyNum.slice(0,3)}-${onlyNum.slice(3)}`;
+          } else {
+            formatted = `${onlyNum.slice(0,3)}-${onlyNum.slice(3,7)}-${onlyNum.slice(7,11)}`;
+          }
+          setForm({ ...form, phone: formatted });
+          return;
+        }
 
-    setForm({ ...form, [e.target.name]: e.target.value });
-    if (e.target.name === 'id') {
-      setIdChecked(false);
-      setIdAvailable(false);
-    }
-  };
-
+        setForm({ ...form, [name]: value });
+      };
 //////
 /// 로그인 핸들러
 /////
   const handleLogin = async () => {
 
   try {
-    const res = await axios.post('${import.meta.env.VITE_API_URL}/login', {
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}/login`, {
       id: form.id,
       password: form.password
     });
@@ -97,7 +105,16 @@ const handleEmailIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 헤더 기본값으로 토큰 설정
     axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
 
-    login(res.data.user, res.data.token);  // 👈 알림판에 기록
+    // login(res.data.user, res.data.token);  
+
+    console.log('res.data', res.data);
+          login({   // 👈 알림판에 기록
+        id: res.data.user.id,      
+        name: res.data.user.name,
+        phone: res.data.user.phone,
+        email: res.data.user.email,
+        role: res.data.user.role
+      }, res.data.token);
 
     console.log('로그인 성공:', res.data);
     // 로그인 성공 → 메인페이지 이동
@@ -113,7 +130,7 @@ const handleEmailIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!form.id) return alert("아이디를 입력해주세요.");
 
     try {
-      const response = await fetch('${import.meta.env.VITE_API_URL}/check-id', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/check-id`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -212,9 +229,9 @@ useEffect(() => {
       return;
 
      
-    if (mode === "register") {
+    if (mode === "register") { 
       try {
-        const response = await fetch('${import.meta.env.VITE_API_URL}/register', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/register`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -234,6 +251,7 @@ useEffect(() => {
 
         if ( data.success) {
           alert('회원가입이 완료되었습니다! 로그인 페이지로 이동합니다.');
+          setMode("login")
         } else {
           alert(data.message || '회원가입 실패');
         }

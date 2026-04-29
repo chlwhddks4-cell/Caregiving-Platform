@@ -134,11 +134,30 @@ const SALE_PRODUCTS = [
   },
 ];
 
-function formatPrice(price) {
+interface  price {
+  name: string;
+  price: number;
+
+}
+
+function formatPrice(price: number): string  {
   return price.toLocaleString("ko-KR") + "원";
 }
 
-function ProductCard({ product }) {
+
+// 파일 맨 위쪽에 있어야 해요
+interface Product {
+  name: string;
+  price: number;
+  original: number;
+  color: string;
+  emoji: string;
+  brand: string;
+  discount: string;
+  badge: string;
+}
+
+function ProductCard({ product }: { product: Product }) {
   const [wished, setWished] = useState(false);
   return (
     <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100">

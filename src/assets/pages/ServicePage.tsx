@@ -1,138 +1,172 @@
+import { useNavigate } from "react-router-dom";
+
 export default function ServicePage() {
+  const navigate = useNavigate();
+
   return (
-    <div className="bg-gray-50">
+    <div style={{ minHeight: "100vh", background: "#f8f7f4", fontFamily: "sans-serif" }}>
 
-      {/* 상단 배너 */}
-      <section className="relative h-[260px] md:h-[340px] flex items-center justify-center text-white">
-        <img
-          src="/banner.jpg"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/30" />
-        <h1 className="relative text-2xl md:text-4xl font-bold">
-          서비스 소개
-        </h1>
-      </section>
-
-      {/* 소개 텍스트 */}
-      <section className="max-w-6xl mx-auto px-4 py-10 text-center">
-        <p className="text-sm text-gray-400 mb-2">주요 서비스</p>
-        <h2 className="text-lg md:text-2xl font-bold mb-4">
-          돌봄의 시작부터 끝까지, 한 번에 빠르게!
-          <br />
-          프라임케어 하나면 충분합니다.
-        </h2>
-        <p className="text-gray-500 text-sm">
-          프라임케어는 간병을 중심으로 출발해, 돌봄 전 과정을 하나로 확장해 나가는 올인원 통합 플랫폼입니다.
-        </p>
-      </section>
-
-      {/* 서비스 리스트 */}
-      <section className="max-w-6xl mx-auto px-4 space-y-16 pb-16">
-
-        <ServiceItem
-          title="간병인 맞춤 매칭 서비스"
-          desc={[
-            "환자 상태에 맞는 최적화된 간병인 추천 프로그램",
-            "고객이 직접 선택하는 투명한 매칭 구조",
-            "매칭 시작 이후에도 철저한 관리",
-            "365일 상담 서비스 제공",
-          ]}
-          img="/img1.jpg"
-        />
-
-        <ServiceItem
-          reverse
-          title="병원 동행 매니저 서비스"
-          desc={[
-            "병원 방문, 검사, 외출 시 보호자를 대신하는 서비스",
-            "접수 및 진료 안내",
-            "병원 이동 및 동행",
-            "보호자 부재 시 안전 동행",
-          ]}
-          img="/img2.jpg"
-        />
-
-        <ServiceItem
-          title="프라임 키즈 케어 서비스"
-          desc={[
-            "아이 돌봄 및 교육 케어",
-            "맞춤형 프로그램 제공",
-            "안전 관리 및 케어",
-          ]}
-          img="/img3.jpg"
-        />
-
-        <ServiceItem
-          reverse
-          title="프라임캐시 포인트샵"
-          desc={[
-            "포인트로 다양한 상품 구매",
-            "이벤트 및 리워드 제공",
-          ]}
-          img="/img4.jpg"
-        />
-
-        <ServiceItem
-          title="365 실시간 고객지원"
-          desc={[
-            "365일 고객센터 운영",
-            "상담 및 문의 지원",
-          ]}
-          img="/img5.jpg"
-        />
-
-      </section>
-
-      {/* 하단 CTA */}
-      <section className="relative h-[200px] md:h-[300px] flex items-center">
-        <img
-          src="/bottom.jpg"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="relative max-w-6xl mx-auto px-4 text-white text-lg md:text-2xl font-bold">
-          단순한 매칭 플랫폼이 아닌,<br />
-          간병의 시작부터 끝까지<br />
-          함께하는 파트너가 되겠습니다.
+      {/* 히어로 */}
+      <div style={{ background: "#E6F1FB", padding: "4rem 1rem", textAlign: "center" }}>
+        <div style={{ maxWidth: 720, margin: "0 auto" }}>
+          <span style={{ display: "inline-block", fontSize: 11, padding: "4px 12px", borderRadius: 20, background: "#B5D4F4", color: "#0C447C", marginBottom: 16 }}>
+            케어매치 서비스 소개
+          </span>
+          <h1 style={{ fontSize: 28, fontWeight: 500, color: "#042C53", lineHeight: 1.5, margin: "0 0 14px" }}>
+            간병인 매칭부터 보험 청구까지<br />
+            <span style={{ color: "#185FA5" }}>모든 것을 한번에</span>
+          </h1>
+          <p style={{ fontSize: 14, color: "#378ADD", lineHeight: 1.7 }}>
+            케어매치는 보호자와 간병인을 안전하고 빠르게 연결하는<br />
+            전문 간병인 매칭 플랫폼입니다.
+          </p>
         </div>
-      </section>
+      </div>
 
+      <div style={{ maxWidth: 960, margin: "0 auto", padding: "3rem 1rem" }}>
+
+        {/* 섹션 1: 이미지 왼쪽 */}
+        <Section
+          reverse={false}
+          imgBg="#E6F1FB"
+          imgContent={
+            <div style={{ textAlign: "center", padding: "2rem", width: "100%" }}>
+              <div style={{ fontSize: 56, marginBottom: 12 }}>🔍</div>
+              <div style={{ fontSize: 13, color: "#185FA5", fontWeight: 500 }}>간병인 검색 화면</div>
+              <div style={{ marginTop: 12, background: "#fff", borderRadius: 8, padding: "10px 14px", textAlign: "left" }}>
+                <div style={{ fontSize: 11, color: "#888", marginBottom: 6 }}>📍 서울특별시 강남구</div>
+                <div style={{ fontSize: 11, color: "#888", marginBottom: 6 }}>📅 2026-05-01 ~ 2026-05-31</div>
+                <div style={{ fontSize: 11, color: "#185FA5", fontWeight: 500 }}>간병인 12명 신청</div>
+              </div>
+            </div>
+          }
+          badge="01. 간병인 매칭"
+          badgeBg="#E6F1FB"
+          badgeColor="#185FA5"
+          title={"원하는 조건의 간병인을\n빠르게 찾아보세요"}
+          desc="지역, 기간, 일당 등 원하는 조건을 입력하면 조건에 맞는 간병인들이 신청해드립니다."
+          features={[
+            { title: "지역별 검색", desc: "전국 시도/구군 단위로 원하는 지역의 간병인을 찾을 수 있어요.", bg: "#E6F1FB" },
+            { title: "조건 맞춤 매칭", desc: "기간, 일당, 간병 시간 등 세부 조건을 설정할 수 있어요.", bg: "#E6F1FB" },
+            { title: "신청자 프로필 확인", desc: "경력, 자격증, 자기소개를 확인하고 수락/거절할 수 있어요.", bg: "#E6F1FB" },
+          ]}
+        />
+
+        <div style={{ height: 60 }} />
+
+        {/* 섹션 2: 이미지 오른쪽 */}
+        <Section
+          reverse={true}
+          imgBg="#E1F5EE"
+          imgContent={
+            <div style={{ textAlign: "center", padding: "2rem", width: "100%" }}>
+              <div style={{ fontSize: 56, marginBottom: 12 }}>🧑‍⚕️</div>
+              <div style={{ fontSize: 13, color: "#0F6E56", fontWeight: 500 }}>간병인 프로필</div>
+              <div style={{ marginTop: 12, background: "#fff", borderRadius: 8, padding: "10px 14px", textAlign: "left" }}>
+                <div style={{ fontSize: 11, color: "#888", marginBottom: 4 }}>경력 5년 · 요양보호사 1급</div>
+                <div style={{ fontSize: 11, color: "#888", marginBottom: 4 }}>활동지역: 서울 강남구</div>
+                <div style={{ display: "flex", gap: 4, marginTop: 6 }}>
+                  {["치매", "뇌졸중", "24시간"].map((t) => (
+                    <span key={t} style={{ fontSize: 10, padding: "2px 6px", background: "#E1F5EE", color: "#0F6E56", borderRadius: 10 }}>{t}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          }
+          badge="02. 검증된 간병인"
+          badgeBg="#E1F5EE"
+          badgeColor="#0F6E56"
+          title={"자격증 인증된 전문\n간병인을 만나보세요"}
+          desc="케어매치의 간병인은 자격증 및 경력 검증 절차를 거쳐 신뢰할 수 있는 서비스를 제공합니다."
+          features={[
+            { title: "자격증 인증", desc: "요양보호사, 간호조무사 등 자격증 보유 여부를 확인해요.", bg: "#E1F5EE" },
+            { title: "경력 검증", desc: "실제 간병 경력을 확인하고 신뢰할 수 있는 간병인을 선택해요.", bg: "#E1F5EE" },
+            { title: "리뷰 및 평점", desc: "이전 보호자들의 리뷰와 평점으로 간병인을 평가할 수 있어요.", bg: "#E1F5EE" },
+          ]}
+        />
+
+        <div style={{ height: 60 }} />
+
+        {/* CTA */}
+        <div style={{ background: "#E6F1FB", borderRadius: 16, padding: "2.5rem", textAlign: "center" }}>
+          <p style={{ fontSize: 20, fontWeight: 500, color: "#185FA5", marginBottom: 8 }}>지금 바로 케어매치를 시작해보세요</p>
+          <p style={{ fontSize: 14, color: "#378ADD", marginBottom: 24 }}>믿을 수 있는 간병 서비스를 경험하세요.</p>
+          <div style={{ display: "flex", justifyContent: "center", gap: 10, flexWrap: "wrap" }}>
+            <button
+              onClick={() => navigate("/careRequestList")}
+              style={{ padding: "11px 28px", background: "#185FA5", color: "#E6F1FB", border: "none", borderRadius: 8, fontSize: 14, fontWeight: 500, cursor: "pointer" }}
+            >
+              간병인 찾기 →
+            </button>
+            <button
+              onClick={() => navigate("/careRequest")}
+              style={{ padding: "11px 28px", background: "#fff", color: "#185FA5", border: "1px solid #185FA5", borderRadius: 8, fontSize: 14, cursor: "pointer" }}
+            >
+              간병 요청하기
+            </button>
+          </div>
+        </div>
+
+        <div style={{ height: 40 }} />
+      </div>
     </div>
   );
 }
 
-type Props = {
+function Section({
+  reverse, imgBg, imgContent, badge, badgeBg, badgeColor, title, desc, features,
+}: {
+  reverse: boolean;
+  imgBg: string;
+  imgContent: React.ReactNode;
+  badge: string;
+  badgeBg: string;
+  badgeColor: string;
   title: string;
-  desc: string[];
-  img: string;
-  reverse?: boolean;
-};
-
-function ServiceItem({ title, desc, img, reverse }: Props) {
+  desc: string;
+  features: { title: string; desc: string; bg: string }[];
+}) {
   return (
-    <div
-      className={`
-        flex flex-col md:flex-row items-center gap-6
-        ${reverse ? "md:flex-row-reverse" : ""}
-      `}
-    >
-      {/* 이미지 */}
-      <div className="w-full md:w-1/2">
-        <img
-          src={img}
-          className="w-full h-[200px] md:h-[260px] object-cover rounded-xl"
-        />
+    <div style={{
+      display: "flex",
+      alignItems: "center",
+      gap: "2rem",
+      flexWrap: "wrap",
+      flexDirection: reverse ? "row-reverse" : "row",
+    }}>
+      {/* 이미지 박스 */}
+      <div style={{
+        flex: 1, minWidth: 220,
+        background: imgBg,
+        borderRadius: 16,
+        aspectRatio: "4/3",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}>
+        {imgContent}
       </div>
 
-      {/* 텍스트 */}
-      <div className="w-full md:w-1/2">
-        <h3 className="text-lg font-bold mb-3">{title}</h3>
-        <ul className="text-sm text-gray-600 space-y-2">
-          {desc.map((d, i) => (
-            <li key={i}>• {d}</li>
-          ))}
-        </ul>
+      {/* 텍스트 박스 */}
+      <div style={{ flex: 1, minWidth: 220 }}>
+        <span style={{ display: "inline-block", fontSize: 11, padding: "3px 12px", borderRadius: 20, background: badgeBg, color: badgeColor, marginBottom: 12 }}>
+          {badge}
+        </span>
+        <h2 style={{ fontSize: 20, fontWeight: 500, color: "#1a1a1a", marginBottom: 10, lineHeight: 1.5, whiteSpace: "pre-line" }}>
+          {title}
+        </h2>
+        <p style={{ fontSize: 13, color: "#888", lineHeight: 1.8, marginBottom: 20 }}>{desc}</p>
+        {features.map((f) => (
+          <div key={f.title} style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 12 }}>
+            <div style={{ width: 28, height: 28, borderRadius: 8, background: f.bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, flexShrink: 0, marginTop: 2 }}>
+              ✓
+            </div>
+            <div>
+              <p style={{ fontSize: 13, fontWeight: 500, color: "#1a1a1a", marginBottom: 2 }}>{f.title}</p>
+              <p style={{ fontSize: 12, color: "#888", lineHeight: 1.5 }}>{f.desc}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

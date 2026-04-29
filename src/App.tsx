@@ -1,8 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
 
 import Register from "./assets/pages/Register.tsx";
+
 import Home from "./assets/pages/Home.tsx";
 import Layout from "./assets/pages/Layout.tsx";
 import NoticePage from "./assets/pages/div_NoticePage.tsx";
@@ -19,7 +18,19 @@ import { AuthProvider } from './assets/pages/context/AuthContext.tsx';
 
 import MyPage from "./assets/pages/auth/MyPage.tsx";
 
-import './App.css'
+// care
+import CareRequestForm from "./assets/pages/care/CareRequestForm.tsx";  
+import CareRequestList from "./assets/pages/care/CareRequestList.tsx";
+import CareRequestDetail    from "./assets/pages/care/CareRequestDetail.tsx";
+import CareApplicantList from "./assets/pages/care/CareApplicantList.tsx";  
+
+import FAQPage from "./assets/pages/FAQPage.tsx";
+import AboutPage from "./assets/pages/AboutPage.tsx"
+
+import GuidePage from "./assets/pages/GuidePage.tsx"
+
+
+import './App.css';
 
 
 function App() {
@@ -30,19 +41,29 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>
+            {/* <Route path="/" element={<Home />} /> */}
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/register" element={<Register />} />
             <Route path="/noticePage" element={<NoticePage />} />
             <Route path="/noticeGrid" element={<NoticeGrid />} />
 
-            <Route path="/test_NoticeGrid" element={<Test_NoticeGrid22 />} />
+            
             <Route path="/servicePage" element={<ServicePage />} />
             <Route path="/write" element={<WritePage />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/find-account" element={<FindAccount />} />
             <Route path="/detail/:id" element={<DetailPage />} />
             <Route path="/mypage" element={<MyPage />} />
+            
+            <Route path="/careRequest" element={<CareRequestForm />} />
+            <Route path="/careRequestList" element={<CareRequestList />} /> 
+            <Route path="/careRequestDetail/:id" element={<CareRequestDetail />} />
+            <Route path="/careApplicants/:request_id" element={<CareApplicantList />} />  
+            
+            <Route path="/faq" element={<FAQPage />} />
+            <Route path="/guide" element={<GuidePage />} />
+            <Route path="/about" element={<AboutPage />} />
           </Route>
         </Routes>
         </BrowserRouter>

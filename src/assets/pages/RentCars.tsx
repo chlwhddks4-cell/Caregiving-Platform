@@ -113,7 +113,8 @@ function StarRating({ count = 5 }) {
   );
 }
 
-function CarSVG({ color }) {
+
+  function CarSVG({ color }: { color: string }) {
   return (
     <svg viewBox="0 0 220 90" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
       <ellipse cx="110" cy="80" rx="100" ry="8" fill="rgba(0,0,0,0.08)" />
