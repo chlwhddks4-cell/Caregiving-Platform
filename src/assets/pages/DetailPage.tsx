@@ -4,12 +4,12 @@ import { useNavigate, useParams , useLocation   } from "react-router-dom";
 
 import { useAuth } from '../pages/context/AuthContext.tsx';
 
-
+import { Modal, useModal } from "./components/Modal.tsx";
 
 
 export default function DetailPage() {
   const navigate = useNavigate();
-
+const { modal, showAlert, showConfirm } = useModal();
   const { user } = useAuth();
 const isAdmin = user?.role === 'admin';
   
@@ -143,7 +143,9 @@ const [original, setOriginal] = useState({
 //** 게시글 삭제 **/
   const handleDeleteSubmit = async () => {
     
-     if (!confirm("삭제 하시겠습니까?")) return;
+
+      const ok = await showConfirm("", "삭제 하시겠습니까?");
+      if (!ok) return;
 
    try {
       await fetch(`${import.meta.env.VITE_API_URL}/delete`, {
@@ -154,13 +156,14 @@ const [original, setOriginal] = useState({
         body: JSON.stringify({ id })
       }).then((res) => res.json())
                 .then((res) => {
-                  alert(res.message);
+                  showAlert("", res.message, "success");
+                  
                 });
 
  
 
     //   alert("삭제 완료!");
-       navigate("/noticePage");
+       navigate("/noticeGrid");
     } catch (err) {
       console.error(err);
     }
@@ -170,6 +173,8 @@ const [original, setOriginal] = useState({
 
 
   return (
+    <>
+           <Modal {...modal} />
     <div className="bg-gray-50 min-h-screen px-4 py-10">
       <div className="max-w-[900px] mx-auto bg-white rounded-2xl shadow-sm border p-6 md:p-8">
 
@@ -328,5 +333,6 @@ const [original, setOriginal] = useState({
       </div>
       
     </div>
+    </>
   );
 }
