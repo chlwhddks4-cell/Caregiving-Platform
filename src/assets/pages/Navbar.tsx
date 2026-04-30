@@ -41,18 +41,30 @@ const navigate = useNavigate();
 
         {/* LOGO */}
         <Link to="/" className="flex items-center gap-2">
-        <div className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-blue-400 flex items-center justify-center text-white font-black text-sm">
-            C
-          </div>
-          <div className="leading-tight">
-            <span className="text-blue-600 font-black text-lg">Care</span>
-            <span className="text-gray-800 font-black text-lg">Match</span>
-            <div className="text-gray-400 text-[10px] font-medium -mt-1">
-              CareMatch
+          <div className="flex items-center gap-3">
+            {/* 하트+십자 SVG 심볼 */}
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M20 36 C20 36 3 24 3 11 C3 5 7.5 1 13.5 2.5 C16 3.2 18.5 5.5 20 8.5 C21.5 5.5 24 3.2 26.5 2.5 C32.5 1 37 5 37 11 C37 24 20 36 20 36 Z"
+                fill="#378ADD"
+              />
+              <rect x="18" y="11" width="4" height="14" rx="1.5" fill="white" />
+              <rect x="13" y="16" width="14" height="4" rx="1.5" fill="white" />
+            </svg>
+
+            {/* 텍스트 */}
+            <div className="leading-tight">
+              <div className="flex items-baseline gap-1">
+                <span className="text-blue-600 font-black text-lg">광주 우리</span>
+              </div>
+              <div className="text-blue-400 font-semibold text-sm tracking-wide">
+                일자리ㆍ간병인협회
+              </div>
+              <div className="text-gray-400 font-medium text-[10px] tracking-widest uppercase">
+                Gwangju Care Association
+              </div>
             </div>
           </div>
-        </div>
         </Link>
         
         {/* PC 메뉴 */}
