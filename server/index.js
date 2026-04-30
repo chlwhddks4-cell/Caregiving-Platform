@@ -430,7 +430,7 @@ app.post("/login", async (req, res) => {
     const token = jwt.sign(
       { id: user.id, name: user.name, role: user.role  },
       process.env.JWT_SECRET,
-      { expiresIn: '7d' }  // 7일 유효
+      { expiresIn: '50M' }  // 50분 유효
     );
 
     // 5. 마지막 로그인 시간 업데이트
